@@ -11,7 +11,7 @@ low-elevation-newts
 metabolic-scaling-at-each-group-and-time-point
 time-point-oxygen-consumption
 time-point-oxygen-consumption-linking-individuals
-raw-data-modelling-lmm
+raw-data-modelling-lmm-using-population
 raw-data-modelling-lmm-without-interaction
 raw-data-modelling-lmm-using-elevation
-raw-data-modelling-lmm-using-elevation-as-interaction
+raw-data-modelling-lmm-with-interaction

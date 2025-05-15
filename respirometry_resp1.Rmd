@@ -805,7 +805,7 @@ calotriton_resp1 %>%
   labs(x = "Time-point", y = "Normalized o2 consumption (ml/s/g)", color = "Time-point", fill = "Time-point")
 ```
 
-# Raw data modelling (LMM)
+# Raw data modelling (LMM) using population
 
 ```{r model}
 #exclude the acclimation time-point
@@ -825,7 +825,7 @@ MuMIn::r.squaredGLMM(model)
 
 ```
 
-# Raw data modelling (LMM) without interaction
+## Raw data modelling (LMM) without interaction
 
 ```{r model_2}
 #Create linear model formula
@@ -840,7 +840,7 @@ MuMIn::r.squaredGLMM(model3)
 ```
 
 
-## Raw data modelling (LMM) using elevation
+# Raw data modelling (LMM) using elevation
 
 ```{r model_4}
 #Create linear model formula
@@ -855,7 +855,7 @@ MuMIn::r.squaredGLMM(model4)
 ```
 
 
-## Raw data modelling (LMM) using elevation as interaction
+## Raw data modelling (LMM) with interaction
 
 ```{r model_5}
 #Create linear model formula
