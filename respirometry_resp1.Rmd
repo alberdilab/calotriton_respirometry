@@ -1,0 +1,915 @@
+# Data input and cleaning
+
+```{r data_input, include=FALSE, eval=FALSE}
+Harpea1_acclimatacion<-read_table('data/2023-08-17_094925_Harpea1_acclimatacion.txt')
+Goizueta5_acclimatacion<-read_table("data/2023-08-17_101605_Goizueta5_acclimatacion.txt")
+Erlan8_acclimatacion<-read_table('data/2023-08-17_103916_Erlan8_acclimatacion.txt')
+Leitzaran7_acclimatacion<-read_table('data/2023-08-17_110619_Leitzaran7_acclimatacion.txt')
+Harpea5_acclimatacion<-read_table('data/2023-08-17_113404_Harpea5_acclimatacion.txt')
+Goizueta7_acclimatacion<-read_table('data/2023-08-17_120343_Goizueta7_acclimatacion.txt')
+Leitzaran3_acclimatacion<-read_table('data/2023-08-17_122902_Leitzaran3_acclimatacion.txt')
+Erlan3_acclimatacion<-read_table('data/2023-08-17_125030_Erlan3_acclimatacion.txt')
+Goizueta1_post1<-read_table('data/2023-08-21_094955_Goizueta1_post1.txt')
+Leitzaran7_post1<-read_table('data/2023-08-21_101049_Leitzaran7_post1.txt')
+Erlan7_post1<-read_table('data/2023-08-21_103126_Erlan7_post1.txt')
+Leitzaran6_post1<-read_table('data/2023-08-21_105116_Leitzaran6_post1.txt')
+Goizueta3_post1<-read_table('data/2023-08-21_111049_Goizueta3_post1.txt')
+Harpea1_post1<-read_table('data/2023-08-21_113410_Harpea1_post1.txt')
+Erlan5_post1<-read_table('data/2023-08-21_115523_Erlan5_post1.txt')
+Goizueta5_post1<-read_table('data/2023-08-21_121632_Goizueta5_post1.txt')
+Erlan4_post1<-read_table('data/2023-08-21_123905_Erlan4_post1.txt')
+Harpea8_post1<-read_table('data/2023-08-21_130550_Harpea8_post1.txt')
+Goizueta8_post1<-read_table('data/2023-08-21_132625_Goizueta8_post1.txt')
+Erlan3_post1<-read_table('data/2023-08-21_134514_Erlan3_post1.txt')
+Erlan2_post1<-read_table('data/2023-08-21_140632_Erlan2_post1.txt')
+Harpea6_post1<-read_table('data/2023-08-21_142652_Harpea6_post1.txt')
+Leitzaran3_post1<-read_table('data/2023-08-21_144708_Leitzaran3_post1.txt')
+Leitzaran4_post1<-read_table('data/2023-08-21_150820_Leitzaran4_post1.txt')
+Harpea3_post1<-read_table('data/2023-08-22_094417_Harpea3_post1.txt')
+Goizueta2_post1<-read_table('data/2023-08-22_101033_Goizueta2_post1.txt')
+Harpea2_post1<-read_table('data/2023-08-22_103515_Harpea2_post1.txt')
+Goizueta9_post1<-read_table('data/2023-08-22_105835_Goizueta9_post1.txt')
+Leitzaran5_post1<-read_table('data/2023-08-22_112008_Leitzaran5_post1.txt')
+Erlan8_post1<-read_table('data/2023-08-22_114405_Erlan8_post1.txt')
+Erlan6_post1<-read_table('data/2023-08-22_121045_Erlan6_post1.txt')
+Goizueta3_post1<-read_table('data/2023-08-22_123044_Goizueta3_post1.txt')
+Goizueta4_post1<-read_table('data/2023-08-22_125531_Goizueta4_post1.txt')
+Leitzaran2_post1<-read_table('data/2023-08-22_131557_Leitzaran2_post1.txt')
+Leitzaran1_post1<-read_table('data/2023-08-22_134014_Leitzaran1_post1.txt')
+Harpea5_post1<-read_table('data/2023-08-22_140250_Harpea5_post1.txt')
+Goizueta7_post1<-read_table('data/2023-08-22_142225_Goizueta7_post1.txt')
+Goizueta6_post1<-read_table('data/2023-08-22_144247_Goizueta6_post1.txt')
+Harpea7_post1<-read_table('data/2023-08-22_150338_Harpea7_post1.txt')
+Erlan1_post1<-read_table('data/2023-08-22_152239_Erlan1_post1.txt')
+Goizueta3_post2<-read_table('data/2023-08-31_094117_Goizueta3_post2.txt')
+Goizueta9_post2<-read_table('data/2023-08-31_100528_Goizueta9_post2.txt')
+Goizueta1_post2<-read_table('data/2023-08-31_102820_Goizueta1_post2.txt')
+Erlan6_post2<-read_table('data/2023-08-31_104927_Erlan6_post2.txt')
+Leitzaran6_post2<-read_table('data/2023-08-31_111442_Leitzaran6_post2.txt')
+Erlan5_post2<-read_table('data/2023-08-31_113759_Erlan5_post2.txt')
+Erlan7_post2<-read_table('data/2023-08-31_120144_Erlan7_post2.txt')
+Leitzaran3_post2<-read_table('data/2023-08-31_123046_Leitzaran3_post2.txt')
+Erlan3_post2<-read_table('data/2023-08-31_125140_Erlan3_post2.txt')
+Erlan2_post2<-read_table('data/2023-08-31_131345_Erlan2_post2.txt')
+Erlan1_post2<-read_table('data/2023-08-31_133612_Erlan1_post2.txt')
+Erlan4_post2<-read_table('data/2023-08-31_140114_Erlan4_post2.txt')
+Goizueta8_post2<-read_table('data/2023-08-31_142504_Goizueta8_post2.txt')
+Harpea8_post2<-read_table('data/2023-08-31_144722_Harpea8_post2.txt')
+Leitzaran1_post2<-read_table('data/2023-08-31_151009_Leitzaran1_post2.txt')
+Harpea6_post2<-read_table('data/2023-09-01_093457_Harpea6_post2.txt')
+Leitzaran2_post2<-read_table('data/2023-09-01_095525_Leitzaran2_post2.txt')
+Goizueta4_post2<-read_table('data/2023-09-01_103810_Goizueta4_post2.txt')
+Leitzaran4_post2<-read_table('data/2023-09-01_110108_Leitzaran4_post2.txt')
+Harpea7_post2<-read_table('data/2023-09-01_112139_Harpea7_post2.txt')
+Harpea5_post2<-read_table('data/2023-09-01_114208_Harpea5_post2.txt')
+Goizueta6_post2<-read_table('data/2023-09-01_121221_Goizueta6_post2.txt')
+Goizueta7_post2<-read_table('data/2023-09-01_123729_Goizueta7_post2.txt')
+Leitzaran7_post2<-read_table('data/2023-09-01_130235_Leitzaran7_post2.txt')
+Leitzaran5_post2<-read_table('data/2023-09-01_132508_Leitzaran5_post2.txt')
+Goizueta2_post2<-read_table('data/2023-09-01_134650_Goizueta2_post2.txt')
+Erlan8_post2<-read_table('data/2023-09-02_092910_Erlan8_post2.txt')
+Goizueta5_post2<-read_table('data/2023-09-02_095527_Goizueta5_post2.txt')
+Harpea1_post2<-read_table('data/2023-09-02_101555_Harpea1_post2.txt')
+Harpea2_post2<-read_table('data/2023-09-02_103821_Harpea2_post2.txt')
+Harpea3_post2<-read_table('data/2023-09-02_105923_Harpea3_post2.txt')
+```
+
+```{r data_modify, include=FALSE, eval=FALSE}
+colnames(Harpea1_acclimatacion)<-gsub("\\[|\\]", "_", colnames(Harpea1_acclimatacion))
+colnames(Goizueta5_acclimatacion)<-gsub("\\[|\\]", "_", colnames(Goizueta5_acclimatacion))
+colnames(Erlan8_acclimatacion)<-gsub("\\[|\\]", "_", colnames(Erlan8_acclimatacion))
+colnames(Leitzaran7_acclimatacion)<-gsub("\\[|\\]", "_", colnames(Leitzaran7_acclimatacion))
+colnames(Harpea5_acclimatacion)<-gsub("\\[|\\]", "_", colnames(Harpea5_acclimatacion))
+colnames(Goizueta7_acclimatacion)<-gsub("\\[|\\]", "_", colnames(Goizueta7_acclimatacion))
+colnames(Leitzaran3_acclimatacion)<-gsub("\\[|\\]", "_", colnames(Leitzaran3_acclimatacion))
+colnames(Erlan3_acclimatacion)<-gsub("\\[|\\]", "_", colnames(Erlan3_acclimatacion))
+colnames(Goizueta1_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta1_post1))
+colnames(Leitzaran7_post1)<-gsub("\\[|\\]", "_", colnames(Leitzaran7_post1))
+colnames(Erlan7_post1)<-gsub("\\[|\\]", "_", colnames(Erlan7_post1))
+colnames(Leitzaran6_post1)<-gsub("\\[|\\]", "_", colnames(Leitzaran6_post1))
+colnames(Goizueta3_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta3_post1))
+colnames(Harpea1_post1)<-gsub("\\[|\\]", "_", colnames(Harpea1_post1))
+colnames(Erlan5_post1)<-gsub("\\[|\\]", "_", colnames(Erlan5_post1))
+colnames(Goizueta5_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta5_post1))
+colnames(Erlan4_post1)<-gsub("\\[|\\]", "_", colnames(Erlan4_post1))
+colnames(Harpea8_post1)<-gsub("\\[|\\]", "_", colnames(Harpea8_post1))
+colnames(Goizueta8_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta8_post1))
+colnames(Erlan3_post1)<-gsub("\\[|\\]", "_", colnames(Erlan3_post1))
+colnames(Erlan2_post1)<-gsub("\\[|\\]", "_", colnames(Erlan2_post1))
+colnames(Harpea6_post1)<-gsub("\\[|\\]", "_", colnames(Harpea6_post1))
+colnames(Leitzaran3_post1)<-gsub("\\[|\\]", "_", colnames(Leitzaran3_post1))
+colnames(Leitzaran4_post1)<-gsub("\\[|\\]", "_", colnames(Leitzaran4_post1))
+colnames(Harpea3_post1)<-gsub("\\[|\\]", "_", colnames(Harpea3_post1))
+colnames(Goizueta2_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta2_post1))
+colnames(Harpea2_post1)<-gsub("\\[|\\]", "_", colnames(Harpea2_post1))
+colnames(Goizueta9_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta9_post1))
+colnames(Leitzaran5_post1)<-gsub("\\[|\\]", "_", colnames(Leitzaran5_post1))
+colnames(Erlan8_post1)<-gsub("\\[|\\]", "_", colnames(Erlan8_post1))
+colnames(Erlan6_post1)<-gsub("\\[|\\]", "_", colnames(Erlan6_post1))
+colnames(Goizueta3_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta3_post1))
+colnames(Goizueta4_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta4_post1))
+colnames(Leitzaran2_post1)<-gsub("\\[|\\]", "_", colnames(Leitzaran2_post1))
+colnames(Leitzaran1_post1)<-gsub("\\[|\\]", "_", colnames(Leitzaran1_post1))
+colnames(Harpea5_post1)<-gsub("\\[|\\]", "_", colnames(Harpea5_post1))
+colnames(Goizueta7_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta7_post1))
+colnames(Goizueta6_post1)<-gsub("\\[|\\]", "_", colnames(Goizueta6_post1))
+colnames(Harpea7_post1)<-gsub("\\[|\\]", "_", colnames(Harpea7_post1))
+colnames(Erlan1_post1)<-gsub("\\[|\\]", "_", colnames(Erlan1_post1))
+colnames(Goizueta3_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta3_post2))
+colnames(Goizueta9_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta9_post2))
+colnames(Goizueta1_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta1_post2))
+colnames(Erlan6_post2)<-gsub("\\[|\\]", "_", colnames(Erlan6_post2))
+colnames(Leitzaran6_post2)<-gsub("\\[|\\]", "_", colnames(Leitzaran6_post2))
+colnames(Erlan5_post2)<-gsub("\\[|\\]", "_", colnames(Erlan5_post2))
+colnames(Erlan7_post2)<-gsub("\\[|\\]", "_", colnames(Erlan7_post2))
+colnames(Leitzaran3_post2)<-gsub("\\[|\\]", "_", colnames(Leitzaran3_post2))
+colnames(Erlan3_post2)<-gsub("\\[|\\]", "_", colnames(Erlan3_post2))
+colnames(Erlan2_post2)<-gsub("\\[|\\]", "_", colnames(Erlan2_post2))
+colnames(Erlan1_post2)<-gsub("\\[|\\]", "_", colnames(Erlan1_post2))
+colnames(Erlan4_post2)<-gsub("\\[|\\]", "_", colnames(Erlan4_post2))
+colnames(Goizueta8_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta8_post2))
+colnames(Harpea8_post2)<-gsub("\\[|\\]", "_", colnames(Harpea8_post2))
+colnames(Leitzaran1_post2)<-gsub("\\[|\\]", "_", colnames(Leitzaran1_post2))
+colnames(Harpea6_post2)<-gsub("\\[|\\]", "_", colnames(Harpea6_post2))
+colnames(Leitzaran2_post2)<-gsub("\\[|\\]", "_", colnames(Leitzaran2_post2))
+colnames(Goizueta4_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta4_post2))
+colnames(Leitzaran4_post2)<-gsub("\\[|\\]", "_", colnames(Leitzaran4_post2))
+colnames(Harpea7_post2)<-gsub("\\[|\\]", "_", colnames(Harpea7_post2))
+colnames(Harpea5_post2)<-gsub("\\[|\\]", "_", colnames(Harpea5_post2))
+colnames(Goizueta6_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta6_post2))
+colnames(Goizueta7_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta7_post2))
+colnames(Leitzaran7_post2)<-gsub("\\[|\\]", "_", colnames(Leitzaran7_post2))
+colnames(Leitzaran5_post2)<-gsub("\\[|\\]", "_", colnames(Leitzaran5_post2))
+colnames(Goizueta2_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta2_post2))
+colnames(Erlan8_post2)<-gsub("\\[|\\]", "_", colnames(Erlan8_post2))
+colnames(Goizueta5_post2)<-gsub("\\[|\\]", "_", colnames(Goizueta5_post2))
+colnames(Harpea1_post2)<-gsub("\\[|\\]", "_", colnames(Harpea1_post2))
+colnames(Harpea2_post2)<-gsub("\\[|\\]", "_", colnames(Harpea2_post2))
+colnames(Harpea3_post2)<-gsub("\\[|\\]", "_", colnames(Harpea3_post2))
+```
+
+```{r data_subset, include=FALSE, eval=FALSE}
+Harpea1_acclimatacion_subset<-subset(Harpea1_acclimatacion, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta5_acclimatacion_subset<-subset(Goizueta5_acclimatacion, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan8_acclimatacion_subset<-subset(Erlan8_acclimatacion, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran7_acclimatacion_subset<-subset(Leitzaran7_acclimatacion, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea5_acclimatacion_subset<-subset(Harpea5_acclimatacion, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta7_acclimatacion_subset<-subset(Goizueta7_acclimatacion, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran3_acclimatacion_subset<-subset(Leitzaran3_acclimatacion, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan3_acclimatacion_subset<-subset(Erlan3_acclimatacion, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta1_post1_subset<-subset(Goizueta1_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran7_post1_subset<-subset(Leitzaran7_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan7_post1_subset<-subset(Erlan7_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran6_post1_subset<-subset(Leitzaran6_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta3_post1_subset<-subset(Goizueta3_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea1_post1_subset<-subset(Harpea1_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan5_post1_subset<-subset(Erlan5_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta5_post1_subset<-subset(Goizueta5_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan4_post1_subset<-subset(Erlan4_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea8_post1_subset<-subset(Harpea8_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta8_post1_subset<-subset(Goizueta8_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan3_post1_subset<-subset(Erlan3_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan2_post1_subset<-subset(Erlan2_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea6_post1_subset<-subset(Harpea6_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran3_post1_subset<-subset(Leitzaran3_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran4_post1_subset<-subset(Leitzaran4_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea3_post1_subset<-subset(Harpea3_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta2_post1_subset<-subset(Goizueta2_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea2_post1_subset<-subset(Harpea2_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta9_post1_subset<-subset(Goizueta9_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran5_post1_subset<-subset(Leitzaran5_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan8_post1_subset<-subset(Erlan8_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan6_post1_subset<-subset(Erlan6_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta3_post1_subset<-subset(Goizueta3_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta4_post1_subset<-subset(Goizueta4_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran2_post1_subset<-subset(Leitzaran2_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran1_post1_subset<-subset(Leitzaran1_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea5_post1_subset<-subset(Harpea5_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta7_post1_subset<-subset(Goizueta7_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta6_post1_subset<-subset(Goizueta6_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea7_post1_subset<-subset(Harpea7_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan1_post1_subset<-subset(Erlan1_post1, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta3_post2_subset<-subset(Goizueta3_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta9_post2_subset<-subset(Goizueta9_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta1_post2_subset<-subset(Goizueta1_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan6_post2_subset<-subset(Erlan6_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran6_post2_subset<-subset(Leitzaran6_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan5_post2_subset<-subset(Erlan5_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan7_post2_subset<-subset(Erlan7_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran3_post2_subset<-subset(Leitzaran3_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan3_post2_subset<-subset(Erlan3_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan2_post2_subset<-subset(Erlan2_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan1_post2_subset<-subset(Erlan1_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan4_post2_subset<-subset(Erlan4_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta8_post2_subset<-subset(Goizueta8_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea8_post2_subset<-subset(Harpea8_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran1_post2_subset<-subset(Leitzaran1_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea6_post2_subset<-subset(Harpea6_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran2_post2_subset<-subset(Leitzaran2_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta4_post2_subset<-subset(Goizueta4_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran4_post2_subset<-subset(Leitzaran4_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea7_post2_subset<-subset(Harpea7_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea5_post2_subset<-subset(Harpea5_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta6_post2_subset<-subset(Goizueta6_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta7_post2_subset<-subset(Goizueta7_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran7_post2_subset<-subset(Leitzaran7_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran5_post2_subset<-subset(Leitzaran5_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta2_post2_subset<-subset(Goizueta2_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan8_post2_subset<-subset(Erlan8_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta5_post2_subset<-subset(Goizueta5_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea1_post2_subset<-subset(Harpea1_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea2_post2_subset<-subset(Harpea2_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea3_post2_subset<-subset(Harpea3_post2, select=c("Time__A_Ch.1_Main_","Oxygen_(%O2)__A_Ch.1_Main_"))
+```
+
+```{r time_fix, include=FALSE, eval=FALSE}
+Harpea1_acclimatacion_subset<-Harpea1_acclimatacion_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta5_acclimatacion_subset<-Goizueta5_acclimatacion_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan8_acclimatacion_subset<-Erlan8_acclimatacion_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran7_acclimatacion_subset<-Leitzaran7_acclimatacion_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea5_acclimatacion_subset<-Harpea5_acclimatacion_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta7_acclimatacion_subset<-Goizueta7_acclimatacion_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran3_acclimatacion_subset<-Leitzaran3_acclimatacion_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan3_acclimatacion_subset<-Erlan3_acclimatacion_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta1_post1_subset<-Goizueta1_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran7_post1_subset<-Leitzaran7_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan7_post1_subset<-Erlan7_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran6_post1_subset<-Leitzaran6_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta3_post1_subset<-Goizueta3_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea1_post1_subset<-Harpea1_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan5_post1_subset<-Erlan5_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta5_post1_subset<-Goizueta5_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan4_post1_subset<-Erlan4_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea8_post1_subset<-Harpea8_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta8_post1_subset<-Goizueta8_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan3_post1_subset<-Erlan3_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan2_post1_subset<-Erlan2_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea6_post1_subset<-Harpea6_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran3_post1_subset<-Leitzaran3_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran4_post1_subset<-Leitzaran4_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea3_post1_subset<-Harpea3_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta2_post1_subset<-Goizueta2_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea2_post1_subset<-Harpea2_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta9_post1_subset<-Goizueta9_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran5_post1_subset<-Leitzaran5_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan8_post1_subset<-Erlan8_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan6_post1_subset<-Erlan6_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta3_post1_subset<-Goizueta3_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta4_post1_subset<-Goizueta4_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran2_post1_subset<-Leitzaran2_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran1_post1_subset<-Leitzaran1_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea5_post1_subset<-Harpea5_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta7_post1_subset<-Goizueta7_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta6_post1_subset<-Goizueta6_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea7_post1_subset<-Harpea7_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan1_post1_subset<-Erlan1_post1_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta3_post2_subset<-Goizueta3_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta9_post2_subset<-Goizueta9_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta1_post2_subset<-Goizueta1_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan6_post2_subset<-Erlan6_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran6_post2_subset<-Leitzaran6_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan5_post2_subset<-Erlan5_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan7_post2_subset<-Erlan7_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran3_post2_subset<-Leitzaran3_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan3_post2_subset<-Erlan3_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan2_post2_subset<-Erlan2_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan1_post2_subset<-Erlan1_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan4_post2_subset<-Erlan4_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta8_post2_subset<-Goizueta8_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea8_post2_subset<-Harpea8_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran1_post2_subset<-Leitzaran1_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea6_post2_subset<-Harpea6_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran2_post2_subset<-Leitzaran2_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta4_post2_subset<-Goizueta4_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran4_post2_subset<-Leitzaran4_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea7_post2_subset<-Harpea7_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea5_post2_subset<-Harpea5_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta6_post2_subset<-Goizueta6_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta7_post2_subset<-Goizueta7_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran7_post2_subset<-Leitzaran7_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Leitzaran5_post2_subset<-Leitzaran5_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta2_post2_subset<-Goizueta2_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Erlan8_post2_subset<-Erlan8_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Goizueta5_post2_subset<-Goizueta5_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea1_post2_subset<-Harpea1_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea2_post2_subset<-Harpea2_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+Harpea3_post2_subset<-Harpea3_post2_subset %>%  mutate(Time = as.numeric(hms::as_hms(Time__A_Ch.1_Main_)))
+```
+
+```{r data_subset_1, include=FALSE, eval=FALSE}
+Harpea1_acclimatacion_subset<-subset(Harpea1_acclimatacion_subset, select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta5_acclimatacion_subset<-subset(Goizueta5_acclimatacion_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan8_acclimatacion_subset<-subset(Erlan8_acclimatacion_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran7_acclimatacion_subset<-subset(Leitzaran7_acclimatacion_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea5_acclimatacion_subset<-subset(Harpea5_acclimatacion_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta7_acclimatacion_subset<-subset(Goizueta7_acclimatacion_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran3_acclimatacion_subset<-subset(Leitzaran3_acclimatacion_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan3_acclimatacion_subset<-subset(Erlan3_acclimatacion_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta1_post1_subset<-subset(Goizueta1_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran7_post1_subset<-subset(Leitzaran7_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan7_post1_subset<-subset(Erlan7_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran6_post1_subset<-subset(Leitzaran6_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta3_post1_subset<-subset(Goizueta3_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea1_post1_subset<-subset(Harpea1_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan5_post1_subset<-subset(Erlan5_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta5_post1_subset<-subset(Goizueta5_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan4_post1_subset<-subset(Erlan4_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea8_post1_subset<-subset(Harpea8_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta8_post1_subset<-subset(Goizueta8_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan3_post1_subset<-subset(Erlan3_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan2_post1_subset<-subset(Erlan2_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea6_post1_subset<-subset(Harpea6_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran3_post1_subset<-subset(Leitzaran3_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran4_post1_subset<-subset(Leitzaran4_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea3_post1_subset<-subset(Harpea3_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta2_post1_subset<-subset(Goizueta2_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea2_post1_subset<-subset(Harpea2_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta9_post1_subset<-subset(Goizueta9_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran5_post1_subset<-subset(Leitzaran5_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan8_post1_subset<-subset(Erlan8_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan6_post1_subset<-subset(Erlan6_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta3_post1_subset<-subset(Goizueta3_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta4_post1_subset<-subset(Goizueta4_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran2_post1_subset<-subset(Leitzaran2_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran1_post1_subset<-subset(Leitzaran1_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea5_post1_subset<-subset(Harpea5_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta7_post1_subset<-subset(Goizueta7_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta6_post1_subset<-subset(Goizueta6_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea7_post1_subset<-subset(Harpea7_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan1_post1_subset<-subset(Erlan1_post1_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta3_post2_subset<-subset(Goizueta3_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta9_post2_subset<-subset(Goizueta9_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta1_post2_subset<-subset(Goizueta1_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan6_post2_subset<-subset(Erlan6_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran6_post2_subset<-subset(Leitzaran6_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan5_post2_subset<-subset(Erlan5_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan7_post2_subset<-subset(Erlan7_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran3_post2_subset<-subset(Leitzaran3_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan3_post2_subset<-subset(Erlan3_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan2_post2_subset<-subset(Erlan2_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan1_post2_subset<-subset(Erlan1_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan4_post2_subset<-subset(Erlan4_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta8_post2_subset<-subset(Goizueta8_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea8_post2_subset<-subset(Harpea8_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran1_post2_subset<-subset(Leitzaran1_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea6_post2_subset<-subset(Harpea6_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran2_post2_subset<-subset(Leitzaran2_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta4_post2_subset<-subset(Goizueta4_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran4_post2_subset<-subset(Leitzaran4_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea7_post2_subset<-subset(Harpea7_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea5_post2_subset<-subset(Harpea5_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta6_post2_subset<-subset(Goizueta6_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta7_post2_subset<-subset(Goizueta7_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran7_post2_subset<-subset(Leitzaran7_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Leitzaran5_post2_subset<-subset(Leitzaran5_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta2_post2_subset<-subset(Goizueta2_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Erlan8_post2_subset<-subset(Erlan8_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Goizueta5_post2_subset<-subset(Goizueta5_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea1_post2_subset<-subset(Harpea1_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea2_post2_subset<-subset(Harpea2_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+Harpea3_post2_subset<-subset(Harpea3_post2_subset,select=c("Time","Oxygen_(%O2)__A_Ch.1_Main_"))
+```
+
+```{r calc_rate, include=FALSE, eval=FALSE}
+Harpea1_acclimatacion_rate<-calc_rate(Harpea1_acclimatacion_subset, from = 35400, to = 36484, by = "Time")
+Goizueta5_acclimatacion_rate<-calc_rate(Goizueta5_acclimatacion_subset, from = 37000, to = 37935, by = "Time")
+Erlan8_acclimatacion_rate<-calc_rate(Erlan8_acclimatacion_subset)
+Leitzaran7_acclimatacion_rate<-calc_rate(Leitzaran7_acclimatacion_subset)
+Harpea5_acclimatacion_rate<-calc_rate(Harpea5_acclimatacion_subset, from = 41654, to = 42700, by = "Time")
+Goizueta7_acclimatacion_rate<-calc_rate(Goizueta7_acclimatacion_subset, from = 43424, to = 43885, by = "Time")
+Leitzaran3_acclimatacion_rate<-calc_rate(Leitzaran3_acclimatacion_subset)
+Erlan3_acclimatacion_rate<-calc_rate(Erlan3_acclimatacion_subset, from = 46232, to = 47194, by = "Time")
+Goizueta1_post1_rate<-calc_rate(Goizueta1_post1_subset)
+Leitzaran7_post1_rate<-calc_rate(Leitzaran7_post1_subset, from = 36801, to = 37564, by = "Time")
+Erlan7_post1_rate<-calc_rate(Erlan7_post1_subset, from = 38005, to = 38803, by = "Time")
+Leitzaran6_post1_rate<-calc_rate(Leitzaran6_post1_subset, from = 39200, to = 39999, by = "Time")
+Goizueta3_post1_rate<-calc_rate(Goizueta3_post1_subset, from = 45045, to = 45981, by = "Time")
+Harpea1_post1_rate<-calc_rate(Harpea1_post1_subset, from = 41800, to = 42629, by = "Time")
+Erlan5_post1_rate<-calc_rate(Erlan5_post1_subset, from = 42938, to = 43876, by = "Time")
+Goizueta5_post1_rate<-calc_rate(Goizueta5_post1_subset, from = 44192, to = 44798, by = "Time")
+Erlan4_post1_rate<-calc_rate(Erlan4_post1_subset, from = 45546, to = 46146, by = "Time")
+Harpea8_post1_rate<-calc_rate(Harpea8_post1_subset, from = 47361, to = 48090, by = "Time")
+Goizueta8_post1_rate<-calc_rate(Goizueta8_post1_subset, from = 48385, to = 48998, by = "Time")
+Erlan3_post1_rate<-calc_rate(Erlan3_post1_subset, from = 49515, to = 50438, by = "Time")
+Erlan2_post1_rate<-calc_rate(Erlan2_post1_subset, from = 50793, to = 51717, by = "Time")
+Harpea6_post1_rate<-calc_rate(Harpea6_post1_subset, from = 52013, to = 52960, by = "Time")
+Leitzaran3_post1_rate<-calc_rate(Leitzaran3_post1_subset, from = 53228, to = 54166, by = "Time")
+Leitzaran4_post1_rate<-calc_rate(Leitzaran4_post1_subset)
+Harpea3_post1_rate<-calc_rate(Harpea3_post1_subset, from = 35058, to = 35964, by = "Time")
+Goizueta2_post1_rate<-calc_rate(Goizueta2_post1_subset, from = 36635, to = 37577, by = "Time")
+Harpea2_post1_rate<-calc_rate(Harpea2_post1_subset, from = 38116, to = 39183, by = "Time")
+Goizueta9_post1_rate<-calc_rate(Goizueta9_post1_subset, from = 39516, to = 40491, by = "Time")
+Leitzaran5_post1_rate<-calc_rate(Leitzaran5_post1_subset, from = 41333, to = 41771, by = "Time")
+#Erlan8_post1_rate<-calc_rate(Erlan8_post1_subset)error measurement
+Erlan6_post1_rate<-calc_rate(Erlan6_post1_subset, from = 43846, to = 44467, by = "Time")
+Goizueta3_post1_rate<-calc_rate(Goizueta3_post1_subset, from = 45045, to = 45669, by = "Time")
+Goizueta4_post1_rate<-calc_rate(Goizueta4_post1_subset, from = 46532, to = 47134, by = "Time")
+Leitzaran2_post1_rate<-calc_rate(Leitzaran2_post1_subset, from = 47757, to = 48369, by = "Time")
+Leitzaran1_post1_rate<-calc_rate(Leitzaran1_post1_subset, from = 49214, to = 49575, by = "Time")
+Harpea5_post1_rate<-calc_rate(Harpea5_post1_subset, from = 50570, to = 51043, by = "Time")
+Goizueta7_post1_rate<-calc_rate(Goizueta7_post1_subset, from = 51745, to = 52358, by = "Time")
+Goizueta6_post1_rate<-calc_rate(Goizueta6_post1_subset, from = 52967, to = 53584, by = "Time")
+Harpea7_post1_rate<-calc_rate(Harpea7_post1_subset, from = 54220, to = 54812, by = "Time")
+Erlan1_post1_rate<-calc_rate(Erlan1_post1_subset, from = 55359, to = 55963, by = "Time")
+#Goizueta3_post2_rate<-calc_rate(Goizueta3_post2_subset)error measurement
+Goizueta9_post2_rate<-calc_rate(Goizueta9_post2_subset, from = 36329, to = 37272, by = "Time")
+Goizueta1_post2_rate<-calc_rate(Goizueta1_post2_subset, from = 37700, to = 38619, by = "Time")
+Erlan6_post2_rate<-calc_rate(Erlan6_post2_subset, from = 39019, to = 40079, by = "Time")
+Leitzaran6_post2_rate<-calc_rate(Leitzaran6_post2_subset, from = 40482, to = 41425, by = "Time")
+Erlan5_post2_rate<-calc_rate(Erlan5_post2_subset)
+Erlan7_post2_rate<-calc_rate(Erlan7_post2_subset, from = 43306, to = 44256, by = "Time")
+Leitzaran3_post2_rate<-calc_rate(Leitzaran3_post2_subset)
+Erlan3_post2_rate<-calc_rate(Erlan3_post2_subset, from = 46301, to = 47203, by = "Time")
+Erlan2_post2_rate<-calc_rate(Erlan2_post2_subset, from = 47627, to = 48565, by = "Time")
+Erlan1_post2_rate<-calc_rate(Erlan1_post2_subset, from = 48973, to = 49910, by = "Time")
+Erlan4_post2_rate<-calc_rate(Erlan4_post2_subset)
+Goizueta8_post2_rate<-calc_rate(Goizueta8_post2_subset)
+Harpea8_post2_rate<-calc_rate(Harpea8_post2_subset, from = 53243, to = 54145, by = "Time")
+Leitzaran1_post2_rate<-calc_rate(Leitzaran1_post2_subset)
+Harpea6_post2_rate<-calc_rate(Harpea6_post2_subset, from = 34497, to = 35400, by = "Time")
+Leitzaran2_post2_rate<-calc_rate(Leitzaran2_post2_subset)
+Goizueta4_post2_rate<-calc_rate(Goizueta4_post2_subset, from = 38310, to = 38917, by = "Time")
+Leitzaran4_post2_rate<-calc_rate(Leitzaran4_post2_subset, from = 39669, to = 40297, by = "Time")
+Harpea7_post2_rate<-calc_rate(Harpea7_post2_subset, from = 40901, to = 41527, by = "Time")
+#Harpea5_post2_rate<-calc_rate(Harpea5_post2_subset) error measurement
+Goizueta6_post2_rate<-calc_rate(Goizueta6_post2_subset, from = 44003, to = 44586, by = "Time")
+Goizueta7_post2_rate<-calc_rate(Goizueta7_post2_subset, from = 45455, to = 46057, by = "Time")
+#Leitzaran7_post2_rate<-calc_rate(Leitzaran7_post2_subset) error measurement
+Leitzaran5_post2_rate<-calc_rate(Leitzaran5_post2_subset)
+Goizueta2_post2_rate<-calc_rate(Goizueta2_post2_subset, from = 49620, to = 50227, by = "Time")
+Erlan8_post2_rate<-calc_rate(Erlan8_post2_subset)
+Goizueta5_post2_rate<-calc_rate(Goizueta5_post2_subset)
+Harpea1_post2_rate<-calc_rate(Harpea1_post2_subset)
+Harpea2_post2_rate<-calc_rate(Harpea2_post2_subset, from = 38314, to = 39212, by = "Time")
+Harpea3_post2_rate<-calc_rate(Harpea3_post2_subset)
+```
+
+```{r calc_rate_1, comment=FALSE, message=FALSE, warning=FALSE, echo=FALSE, include=FALSE, eval=FALSE}
+print(Harpea1_acclimatacion_rate)
+print(Goizueta5_acclimatacion_rate)
+print(Erlan8_acclimatacion_rate)
+print(Leitzaran7_acclimatacion_rate)
+print(Harpea5_acclimatacion_rate)
+print(Goizueta7_acclimatacion_rate)
+print(Leitzaran3_acclimatacion_rate)
+print(Erlan3_acclimatacion_rate)
+print(Goizueta1_post1_rate)
+print(Leitzaran7_post1_rate)
+print(Erlan7_post1_rate)
+print(Leitzaran6_post1_rate)
+print(Goizueta3_post1_rate)
+print(Harpea1_post1_rate)
+print(Erlan5_post1_rate)
+print(Goizueta5_post1_rate)
+print(Erlan4_post1_rate)
+print(Harpea8_post1_rate)
+print(Goizueta8_post1_rate)
+print(Erlan3_post1_rate)
+print(Erlan2_post1_rate)
+print(Harpea6_post1_rate)
+print(Leitzaran3_post1_rate)
+print(Leitzaran4_post1_rate)
+print(Harpea3_post1_rate)
+print(Goizueta2_post1_rate)
+print(Harpea2_post1_rate)
+print(Goizueta9_post1_rate)
+print(Leitzaran5_post1_rate)
+#print(Erlan8_post1_rate)
+print(Erlan6_post1_rate)
+print(Goizueta3_post1_rate)
+print(Goizueta4_post1_rate)
+print(Leitzaran2_post1_rate)
+print(Leitzaran1_post1_rate)
+print(Harpea5_post1_rate)
+print(Goizueta7_post1_rate)
+print(Goizueta6_post1_rate)
+print(Harpea7_post1_rate)
+print(Erlan1_post1_rate)
+#print(Goizueta3_post2_rate)
+print(Goizueta9_post2_rate)
+print(Goizueta1_post2_rate)
+print(Erlan6_post2_rate)
+print(Leitzaran6_post2_rate)
+print(Erlan5_post2_rate)
+print(Erlan7_post2_rate)
+print(Leitzaran3_post2_rate)
+print(Erlan3_post2_rate)
+print(Erlan2_post2_rate)
+print(Erlan1_post2_rate)
+print(Erlan4_post2_rate)
+print(Goizueta8_post2_rate)
+print(Harpea8_post2_rate)
+print(Leitzaran1_post2_rate)
+print(Harpea6_post2_rate)
+print(Leitzaran2_post2_rate)
+print(Goizueta4_post2_rate)
+print(Leitzaran4_post2_rate)
+print(Harpea7_post2_rate)
+#print(Harpea5_post2_rate)
+print(Goizueta6_post2_rate)
+print(Goizueta7_post2_rate)
+#print(Leitzaran7_post2_rate)
+print(Leitzaran5_post2_rate)
+print(Goizueta2_post2_rate)
+print(Erlan8_post2_rate)
+print(Goizueta5_post2_rate)
+print(Harpea1_post2_rate)
+print(Harpea2_post2_rate)
+print(Harpea3_post2_rate)
+```
+
+```{r data_load_r}
+load("data/data.Rdata")
+```
+
+
+```{r calc_rate_plot, comment=FALSE, message=FALSE, warning=FALSE,results='hide', fig.height=6, fig.width=10, fig.fullwidth=TRUE}
+plot(Harpea1_acclimatacion_rate)
+plot(Goizueta5_acclimatacion_rate)
+plot(Erlan8_acclimatacion_rate)
+plot(Leitzaran7_acclimatacion_rate)
+plot(Harpea5_acclimatacion_rate)
+plot(Goizueta7_acclimatacion_rate)
+plot(Leitzaran3_acclimatacion_rate)
+plot(Erlan3_acclimatacion_rate)
+plot(Goizueta1_post1_rate)
+plot(Leitzaran7_post1_rate)
+plot(Erlan7_post1_rate)
+plot(Leitzaran6_post1_rate)
+plot(Goizueta3_post1_rate)
+plot(Harpea1_post1_rate)
+plot(Erlan5_post1_rate)
+plot(Goizueta5_post1_rate)
+plot(Erlan4_post1_rate)
+plot(Harpea8_post1_rate)
+plot(Goizueta8_post1_rate)
+plot(Erlan3_post1_rate)
+plot(Erlan2_post1_rate)
+plot(Harpea6_post1_rate)
+plot(Leitzaran3_post1_rate)
+plot(Leitzaran4_post1_rate)
+plot(Harpea3_post1_rate)
+plot(Goizueta2_post1_rate)
+plot(Harpea2_post1_rate)
+plot(Goizueta9_post1_rate)
+plot(Leitzaran5_post1_rate)
+#plot(Erlan8_post1_rate)
+plot(Erlan6_post1_rate)
+plot(Goizueta3_post1_rate)
+plot(Goizueta4_post1_rate)
+plot(Leitzaran2_post1_rate)
+plot(Leitzaran1_post1_rate)
+plot(Harpea5_post1_rate)
+plot(Goizueta7_post1_rate)
+plot(Goizueta6_post1_rate)
+plot(Harpea7_post1_rate)
+plot(Erlan1_post1_rate)
+#plot(Goizueta3_post2_rate)
+plot(Goizueta9_post2_rate)
+plot(Goizueta1_post2_rate)
+plot(Erlan6_post2_rate)
+plot(Leitzaran6_post2_rate)
+plot(Erlan5_post2_rate)
+plot(Erlan7_post2_rate)
+plot(Leitzaran3_post2_rate)
+plot(Erlan3_post2_rate)
+plot(Erlan2_post2_rate)
+plot(Erlan1_post2_rate)
+plot(Erlan4_post2_rate)
+plot(Goizueta8_post2_rate)
+plot(Harpea8_post2_rate)
+plot(Leitzaran1_post2_rate)
+plot(Harpea6_post2_rate)
+plot(Leitzaran2_post2_rate)
+plot(Goizueta4_post2_rate)
+plot(Leitzaran4_post2_rate)
+plot(Harpea7_post2_rate)
+#plot(Harpea5_post2_rate)
+plot(Goizueta6_post2_rate)
+plot(Goizueta7_post2_rate)
+#plot(Leitzaran7_post2_rate)
+plot(Leitzaran5_post2_rate)
+plot(Goizueta2_post2_rate)
+plot(Erlan8_post2_rate)
+plot(Goizueta5_post2_rate)
+plot(Harpea1_post2_rate)
+plot(Harpea2_post2_rate)
+plot(Harpea3_post2_rate)
+```
+
+# Import dataframe
+
+```{r data_import}
+calotriton_resp1 <- read_excel("calotriton_resp1_metadata.xlsx")
+
+calotriton_resp1$individual<-as.factor(calotriton_resp1$individual)
+calotriton_resp1$population<-as.factor(calotriton_resp1$population)
+calotriton_resp1$time_point<-as.factor(calotriton_resp1$time_point)
+calotriton_resp1$elevation<-as.factor(calotriton_resp1$elevation)
+calotriton_resp1$temperature<-as.factor(calotriton_resp1$temperature)
+```
+
+# Weight distribution among groups
+
+```{r plot_weight}
+calotriton_resp1 %>%
+  filter(time_point=="0")%>%
+  ggplot(aes(x = population, y = weight, color=temperature, shape=temperature, alpha=0.2)) +
+    geom_boxplot()+
+    geom_jitter()+
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
+    stat_compare_means(size=3,vjust = 0.8, hjust=1 )+
+    theme(legend.position="right")+
+    labs(x = "Population", y= "Weight (g)")
+```
+
+```{r plot_weight_3}
+weight_subset<-calotriton_resp1 %>%
+  filter(time_point=="0")
+
+#Overall
+weight_subset$weight %>% mean()
+weight_subset$weight %>% sd()
+
+#In high elevation newts
+weight_subset_high<-weight_subset %>% 
+  filter(elevation=="High")
+
+weight_subset_high$weight %>% mean()
+weight_subset_high$weight %>% sd()
+
+#In low elevation newts
+weight_subset_low<-weight_subset %>% 
+  filter(elevation=="Low")
+
+weight_subset_low$weight %>% mean()
+weight_subset_low$weight %>% sd()
+```
+
+## Metabolic scaling at the acclimation time-point
+
+```{r plot_weight_1}
+
+ggplot(weight_subset, aes(weight,o2, color=population, shape=temperature)) + 
+  geom_point() +
+  geom_smooth(method = lm, formula = y ~ x)+
+    stat_poly_eq()+
+    labs(x = "Weight (g)", y= "O2 consumption (ml/s)")
+```
+
+### High elevation newts
+```{r cor_weight_1}
+
+ggplot(weight_subset_high, aes(weight ,o2, shape=temperature)) + 
+  geom_point() +
+  geom_smooth(method = lm, formula = y ~ x)+
+    stat_poly_eq()+
+    labs(x = "Weight (g)", y= "O2 consumption (ml/s)")
+```
+
+### Low elevation newts
+```{r cor_weight_2}
+ggplot(weight_subset_low, aes(weight ,o2, shape=temperature)) + 
+  geom_point() +
+  geom_smooth(method = lm, formula = y ~ x)+
+    stat_poly_eq()+
+    labs(x = "Weight (g)", y= "O2 consumption (ml/s)")
+```
+
+## Metabolic scaling at each group and time-point
+
+```{r plot_weight_2}
+ggplot(calotriton_resp1, aes(weight ,o2)) + 
+  geom_point() +
+  facet_grid(temperature~ factor(population)+time_point)+
+  geom_smooth(method = lm, formula = y ~ x)+
+    stat_poly_eq()+
+    labs(x = "Weight (g)", y= "O2 consumption (ml/s)")
+```
+
+#Acclimation oxygen consumption per population
+
+```{r plot}
+calotriton_resp1 %>%
+  filter(time_point=="0")%>%
+  ggplot(aes(x = population, y = o2_normalized, color=temperature, shape=temperature, alpha=0.2)) +
+    geom_boxplot()+
+    geom_jitter() +
+    #geom_text(aes(label = individual), hjust = 0, nudge_x = 0.05) +
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
+    stat_compare_means(size=3,vjust = 0.8, hjust=1 )+
+    theme(legend.position="right")+
+    labs(x = "Population", y= "Normalized o2 consumption (ml/s/g)")
+```
+
+#Acclimation oxygen consumption per elevation
+
+```{r plot_1}
+calotriton_resp1 %>%
+  filter(time_point=="0")%>%
+  ggplot(aes(x = elevation, y = o2_normalized, shape=temperature, alpha=0.2)) +
+    geom_boxplot()+
+    geom_jitter() +
+    #geom_text(aes(label = individual), hjust = 0, nudge_x = 0.05) +
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
+    stat_compare_means(size=3,vjust = 0.8, hjust=1 )+
+    theme(legend.position="right")+
+    labs(x = "Population", y= "Normalized o2 consumption (ml/s/g)")
+```
+
+#Acclimation oxygen consumption per temperature
+
+```{r plot_5}
+calotriton_resp1 %>%
+  filter(time_point=="0")%>%
+  ggplot(aes(x = temperature, y = o2_normalized, colour=population, alpha=0.2)) +
+    geom_boxplot()+
+    geom_jitter() +
+    #geom_text(aes(label = individual), hjust = 0, nudge_x = 0.05) +
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
+    stat_compare_means(size=3,vjust = 0.8, hjust=1 )+
+    theme(legend.position="right")+
+    labs(x = "Population", y= "Normalized o2 consumption (ml/s/g)")
+```
+
+# Time-point oxygen consumption
+
+```{r plot_6}
+calotriton_resp1 %>%
+  filter(time_point!="0") %>%
+  ggplot(aes(x = time_point, y = o2_normalized, color=time_point, alpha=0.2)) +
+    geom_boxplot()+
+    geom_jitter() +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+    facet_wrap(~ factor(temperature)+elevation)+
+    stat_compare_means(size=3)+
+    theme(legend.position="right")+
+    labs(x = "Time_point", y= "Normalized o2 consumption (ml/s/g)")
+```
+
+```{r plot_3}
+calotriton_resp1 %>%
+  filter(time_point!="0") %>%
+  ggplot(aes(x = time_point, y = o2_normalized, color=time_point, alpha=0.2)) +
+    geom_boxplot()+
+    geom_jitter() +
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
+    facet_grid(temperature~factor(elevation)+population)+
+    stat_compare_means(size=3)+
+    theme(legend.position="right")+
+    labs(x = "Time_point", y= "Normalized o2 consumption (ml/s/g)")
+```
+
+# Time-point oxygen consumption, linking individuals
+
+```{r plot_2}
+calotriton_resp1 %>%
+  filter(time_point!="0") %>%
+  ggplot(aes(y = o2_normalized, x = interaction(time_point, individual), color = time_point, fill = time_point)) +
+  geom_point(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.8), alpha = 0.5) +
+  facet_grid(temperature~factor(elevation)+population, scale="free") +
+  geom_line(aes(group=individual)) +
+  theme_minimal()+
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, size=0))+
+  labs(x = "Time-point", y = "Normalized o2 consumption (ml/s/g)", color = "Time-point", fill = "Time-point")
+```
+
+# Raw data modelling (LMM)
+
+```{r model}
+#exclude the acclimation time-point
+calotriton_resp1_subset<-calotriton_resp1 %>%
+  filter(time_point!="0")
+
+
+#Create linear model formula
+formula <- formula(o2_normalized ~ time_point*temperature*population+(1|individual))
+
+#Fit the linear model
+model <- lmer(formula, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model)
+MuMIn::r.squaredGLMM(model)
+
+```
+
+## Raw data modelling (LM) without random effect
+
+```{r model_1}
+#Create linear model formula
+formula1 <- formula(o2_normalized ~ time_point*temperature*population) #QC_normalized=o2 consumption normalized (ml/s/g)
+
+#Fit the linear model
+model1 <- lm(formula1, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model1)
+```
+
+# Raw data modelling (LMM) without interaction
+
+```{r model_2}
+#Create linear model formula
+formula3 <- formula(o2_normalized ~ time_point*temperature+population+(1|individual))
+
+#Fit the linear model
+model3 <- lmer(formula3, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model3)
+MuMIn::r.squaredGLMM(model3)
+```
+
+## Raw data modelling (LM) without random effect and interaction
+
+```{r model_3}
+#Create linear model formula
+formula2 <- formula(o2_normalized ~ time_point*temperature+population) #QC_normalized=o2 consumption normalized (ml/s/g)
+
+#Fit the linear model
+model2 <- lm(formula2, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model2)
+```
+
+## Raw data modelling (LM) without random effect and using elevation and not population
+
+```{r model_4}
+#Create linear model formula
+formula4 <- formula(o2_normalized ~ time_point*temperature+elevation) #QC_normalized=o2 consumption normalized (ml/s/g)
+
+#Fit the linear model
+model4 <- lm(formula4, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model4)
+```
+
+
+## Raw data modelling (LM) without random effect and using elevation as interaction
+
+```{r model_5}
+#Create linear model formula
+formula5 <- formula(o2_normalized ~ time_point*temperature*elevation) #QC_normalized=o2 consumption normalized (ml/s/g)
+
+#Fit the linear model
+model5 <- lm(formula5, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model5)
+```
+
+## Raw data modelling (LM) without random effect and using elevation as interaction with temperature
+
+```{r model_6}
+#Create linear model formula
+formula6 <- formula(o2_normalized ~ time_point+temperature*elevation) #QC_normalized=o2 consumption normalized (ml/s/g)
+
+#Fit the linear model
+model6 <- lm(formula6, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model6)
+```
+
+## Raw data modelling (LM) without random effect and using elevation as interaction with time-point
+
+```{r model_7}
+#Create linear model formula
+formula7 <- formula(o2_normalized ~ time_point*elevation+temperature) #QC_normalized=o2 consumption normalized (ml/s/g)
+
+#Fit the linear model
+model7 <- lm(formula7, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model7)
+```
+
+## Raw data modelling (LM) without random effect and population as interaction with temperature
+
+```{r model_8}
+#Create linear model formula
+formula8 <- formula(o2_normalized ~ time_point+temperature*population) #QC_normalized=o2 consumption normalized (ml/s/g)
+
+#Fit the linear model
+model8 <- lm(formula8, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model8)
+```
+
+## Raw data modelling (LM) without random effect and population as interaction with time-point
+
+```{r model_9}
+#Create linear model formula
+formula9 <- formula(o2_normalized ~ time_point*population+temperature) #QC_normalized=o2 consumption normalized (ml/s/g)
+
+#Fit the linear model
+model9 <- lm(formula9, data = calotriton_resp1_subset)
+
+#Print the model summary
+summary(model9)
+```

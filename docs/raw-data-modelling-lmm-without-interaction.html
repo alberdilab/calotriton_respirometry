@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>8 Raw data modelling (LMM) without interaction | _main.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="8 Raw data modelling (LMM) without interaction | _main.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="8 Raw data modelling (LMM) without interaction | _main.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="raw-data-modelling-lmm.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#prepare-the-r-environment"><i class="fa fa-check"></i><b>1.1</b> Prepare the R environment</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#environment"><i class="fa fa-check"></i><b>1.1.1</b> Environment</a></li>
+<li class="chapter" data-level="1.1.2" data-path="index.html"><a href="index.html#libraries"><i class="fa fa-check"></i><b>1.1.2</b> Libraries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="data-input-and-cleaning.html"><a href="data-input-and-cleaning.html"><i class="fa fa-check"></i><b>2</b> Data input and cleaning</a></li>
+<li class="chapter" data-level="3" data-path="import-dataframe.html"><a href="import-dataframe.html"><i class="fa fa-check"></i><b>3</b> Import dataframe</a></li>
+<li class="chapter" data-level="4" data-path="weight-distribution-among-groups.html"><a href="weight-distribution-among-groups.html"><i class="fa fa-check"></i><b>4</b> Weight distribution among groups</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="weight-distribution-among-groups.html"><a href="weight-distribution-among-groups.html#metabolic-scaling-at-the-acclimation-time-point"><i class="fa fa-check"></i><b>4.1</b> Metabolic scaling at the acclimation time-point</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="weight-distribution-among-groups.html"><a href="weight-distribution-among-groups.html#high-elevation-newts"><i class="fa fa-check"></i><b>4.1.1</b> High elevation newts</a></li>
+<li class="chapter" data-level="4.1.2" data-path="weight-distribution-among-groups.html"><a href="weight-distribution-among-groups.html#low-elevation-newts"><i class="fa fa-check"></i><b>4.1.2</b> Low elevation newts</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="weight-distribution-among-groups.html"><a href="weight-distribution-among-groups.html#metabolic-scaling-at-each-group-and-time-point"><i class="fa fa-check"></i><b>4.2</b> Metabolic scaling at each group and time-point</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="time-point-oxygen-consumption.html"><a href="time-point-oxygen-consumption.html"><i class="fa fa-check"></i><b>5</b> Time-point oxygen consumption</a></li>
+<li class="chapter" data-level="6" data-path="time-point-oxygen-consumption-linking-individuals.html"><a href="time-point-oxygen-consumption-linking-individuals.html"><i class="fa fa-check"></i><b>6</b> Time-point oxygen consumption, linking individuals</a></li>
+<li class="chapter" data-level="7" data-path="raw-data-modelling-lmm.html"><a href="raw-data-modelling-lmm.html"><i class="fa fa-check"></i><b>7</b> Raw data modelling (LMM)</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="raw-data-modelling-lmm.html"><a href="raw-data-modelling-lmm.html#raw-data-modelling-lm-without-random-effect"><i class="fa fa-check"></i><b>7.1</b> Raw data modelling (LM) without random effect</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="raw-data-modelling-lmm-without-interaction.html"><a href="raw-data-modelling-lmm-without-interaction.html"><i class="fa fa-check"></i><b>8</b> Raw data modelling (LMM) without interaction</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="raw-data-modelling-lmm-without-interaction.html"><a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-interaction"><i class="fa fa-check"></i><b>8.1</b> Raw data modelling (LM) without random effect and interaction</a></li>
+<li class="chapter" data-level="8.2" data-path="raw-data-modelling-lmm-without-interaction.html"><a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-using-elevation-and-not-population"><i class="fa fa-check"></i><b>8.2</b> Raw data modelling (LM) without random effect and using elevation and not population</a></li>
+<li class="chapter" data-level="8.3" data-path="raw-data-modelling-lmm-without-interaction.html"><a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction"><i class="fa fa-check"></i><b>8.3</b> Raw data modelling (LM) without random effect and using elevation as interaction</a></li>
+<li class="chapter" data-level="8.4" data-path="raw-data-modelling-lmm-without-interaction.html"><a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction-with-temperature"><i class="fa fa-check"></i><b>8.4</b> Raw data modelling (LM) without random effect and using elevation as interaction with temperature</a></li>
+<li class="chapter" data-level="8.5" data-path="raw-data-modelling-lmm-without-interaction.html"><a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction-with-time-point"><i class="fa fa-check"></i><b>8.5</b> Raw data modelling (LM) without random effect and using elevation as interaction with time-point</a></li>
+<li class="chapter" data-level="8.6" data-path="raw-data-modelling-lmm-without-interaction.html"><a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-population-as-interaction-with-temperature"><i class="fa fa-check"></i><b>8.6</b> Raw data modelling (LM) without random effect and population as interaction with temperature</a></li>
+<li class="chapter" data-level="8.7" data-path="raw-data-modelling-lmm-without-interaction.html"><a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-population-as-interaction-with-time-point"><i class="fa fa-check"></i><b>8.7</b> Raw data modelling (LM) without random effect and population as interaction with time-point</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="raw-data-modelling-lmm-without-interaction" class="section level1 hasAnchor" number="8">
+<h1><span class="header-section-number">8</span> Raw data modelling (LMM) without interaction<a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lmm-without-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb112-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb112-1" tabindex="-1"></a><span class="co">#Create linear model formula</span></span>
+<span id="cb112-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb112-2" tabindex="-1"></a>formula3 <span class="ot">&lt;-</span> <span class="fu">formula</span>(o2_normalized <span class="sc">~</span> time_point<span class="sc">*</span>temperature<span class="sc">+</span>population<span class="sc">+</span>(<span class="dv">1</span><span class="sc">|</span>individual))</span>
+<span id="cb112-3"><a href="raw-data-modelling-lmm-without-interaction.html#cb112-3" tabindex="-1"></a></span>
+<span id="cb112-4"><a href="raw-data-modelling-lmm-without-interaction.html#cb112-4" tabindex="-1"></a><span class="co">#Fit the linear model</span></span>
+<span id="cb112-5"><a href="raw-data-modelling-lmm-without-interaction.html#cb112-5" tabindex="-1"></a>model3 <span class="ot">&lt;-</span> <span class="fu">lmer</span>(formula3, <span class="at">data =</span> calotriton_resp1_subset)</span></code></pre></div>
+<pre><code>boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb114-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb114-1" tabindex="-1"></a><span class="co">#Print the model summary</span></span>
+<span id="cb114-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb114-2" tabindex="-1"></a><span class="fu">summary</span>(model3)</span></code></pre></div>
+<pre class="script-output"><code>Linear mixed model fit by REML [&#39;lmerMod&#39;]
+Formula: o2_normalized ~ time_point * temperature + population + (1 |      individual)
+   Data: calotriton_resp1_subset
+
+REML criterion at convergence: -650.5
+
+Scaled residuals: 
+     Min       1Q   Median       3Q      Max 
+-2.07343 -0.72830  0.05987  0.69854  2.38744 
+
+Random effects:
+ Groups     Name        Variance  Std.Dev. 
+ individual (Intercept) 0.000e+00 0.0000000
+ Residual               1.205e-07 0.0003472
+Number of obs: 58, groups:  individual, 31
+
+Fixed effects:
+                            Estimate Std. Error t value
+(Intercept)                8.195e-04  1.240e-04   6.611
+time_point2                2.876e-05  1.342e-04   0.214
+temperature20              1.782e-04  1.275e-04   1.398
+populationGoizueta         1.699e-05  1.234e-04   0.138
+populationHarpea          -3.175e-05  1.317e-04  -0.241
+populationLeitzaran        1.705e-04  1.321e-04   1.290
+time_point2:temperature20 -5.430e-05  1.834e-04  -0.296
+
+Correlation of Fixed Effects:
+            (Intr) tm_pn2 tmpr20 ppltnG ppltnH ppltnL
+time_point2 -0.566                                   
+temperatr20 -0.567  0.506                            
+populatnGzt -0.582  0.067  0.067                     
+populatnHrp -0.510  0.034 -0.003  0.497              
+popltnLtzrn -0.510  0.075 -0.003  0.495  0.464       
+tm_pnt2:t20  0.409 -0.732 -0.693 -0.048  0.000 -0.055
+optimizer (nloptwrap) convergence code: 0 (OK)
+boundary (singular) fit: see help(&#39;isSingular&#39;)</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb116-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb116-1" tabindex="-1"></a>MuMIn<span class="sc">::</span><span class="fu">r.squaredGLMM</span>(model3)</span></code></pre></div>
+<pre class="script-output"><code>            R2m        R2c
+[1,] 0.09324329 0.09324329</code></pre>
+<div id="raw-data-modelling-lm-without-random-effect-and-interaction" class="section level2 hasAnchor" number="8.1">
+<h2><span class="header-section-number">8.1</span> Raw data modelling (LM) without random effect and interaction<a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb118-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb118-1" tabindex="-1"></a><span class="co">#Create linear model formula</span></span>
+<span id="cb118-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb118-2" tabindex="-1"></a>formula2 <span class="ot">&lt;-</span> <span class="fu">formula</span>(o2_normalized <span class="sc">~</span> time_point<span class="sc">*</span>temperature<span class="sc">+</span>population) <span class="co">#QC_normalized=o2 consumption normalized (ml/s/g)</span></span>
+<span id="cb118-3"><a href="raw-data-modelling-lmm-without-interaction.html#cb118-3" tabindex="-1"></a></span>
+<span id="cb118-4"><a href="raw-data-modelling-lmm-without-interaction.html#cb118-4" tabindex="-1"></a><span class="co">#Fit the linear model</span></span>
+<span id="cb118-5"><a href="raw-data-modelling-lmm-without-interaction.html#cb118-5" tabindex="-1"></a>model2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula2, <span class="at">data =</span> calotriton_resp1_subset)</span>
+<span id="cb118-6"><a href="raw-data-modelling-lmm-without-interaction.html#cb118-6" tabindex="-1"></a></span>
+<span id="cb118-7"><a href="raw-data-modelling-lmm-without-interaction.html#cb118-7" tabindex="-1"></a><span class="co">#Print the model summary</span></span>
+<span id="cb118-8"><a href="raw-data-modelling-lmm-without-interaction.html#cb118-8" tabindex="-1"></a><span class="fu">summary</span>(model2)</span></code></pre></div>
+<pre class="script-output"><code>
+Call:
+lm(formula = formula2, data = calotriton_resp1_subset)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-7.199e-04 -2.529e-04  2.079e-05  2.425e-04  8.289e-04 
+
+Coefficients:
+                            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                8.195e-04  1.240e-04   6.611 2.24e-08 ***
+time_point2                2.876e-05  1.342e-04   0.214    0.831    
+temperature20              1.782e-04  1.275e-04   1.398    0.168    
+populationGoizueta         1.699e-05  1.234e-04   0.138    0.891    
+populationHarpea          -3.175e-05  1.317e-04  -0.241    0.810    
+populationLeitzaran        1.705e-04  1.321e-04   1.290    0.203    
+time_point2:temperature20 -5.430e-05  1.834e-04  -0.296    0.768    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.0003472 on 51 degrees of freedom
+Multiple R-squared:  0.1031,    Adjusted R-squared:  -0.002437 
+F-statistic: 0.9769 on 6 and 51 DF,  p-value: 0.4505</code></pre>
+</div>
+<div id="raw-data-modelling-lm-without-random-effect-and-using-elevation-and-not-population" class="section level2 hasAnchor" number="8.2">
+<h2><span class="header-section-number">8.2</span> Raw data modelling (LM) without random effect and using elevation and not population<a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-using-elevation-and-not-population" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb120-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb120-1" tabindex="-1"></a><span class="co">#Create linear model formula</span></span>
+<span id="cb120-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb120-2" tabindex="-1"></a>formula4 <span class="ot">&lt;-</span> <span class="fu">formula</span>(o2_normalized <span class="sc">~</span> time_point<span class="sc">*</span>temperature<span class="sc">+</span>elevation) <span class="co">#QC_normalized=o2 consumption normalized (ml/s/g)</span></span>
+<span id="cb120-3"><a href="raw-data-modelling-lmm-without-interaction.html#cb120-3" tabindex="-1"></a></span>
+<span id="cb120-4"><a href="raw-data-modelling-lmm-without-interaction.html#cb120-4" tabindex="-1"></a><span class="co">#Fit the linear model</span></span>
+<span id="cb120-5"><a href="raw-data-modelling-lmm-without-interaction.html#cb120-5" tabindex="-1"></a>model4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula4, <span class="at">data =</span> calotriton_resp1_subset)</span>
+<span id="cb120-6"><a href="raw-data-modelling-lmm-without-interaction.html#cb120-6" tabindex="-1"></a></span>
+<span id="cb120-7"><a href="raw-data-modelling-lmm-without-interaction.html#cb120-7" tabindex="-1"></a><span class="co">#Print the model summary</span></span>
+<span id="cb120-8"><a href="raw-data-modelling-lmm-without-interaction.html#cb120-8" tabindex="-1"></a><span class="fu">summary</span>(model4)</span></code></pre></div>
+<pre class="script-output"><code>
+Call:
+lm(formula = formula4, data = calotriton_resp1_subset)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-6.728e-04 -2.181e-04  2.615e-05  2.555e-04  9.224e-04 
+
+Coefficients:
+                            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                7.992e-04  1.060e-04   7.540  6.1e-10 ***
+time_point2                2.789e-05  1.334e-04   0.209    0.835    
+temperature20              1.884e-04  1.266e-04   1.488    0.143    
+elevationLow               9.820e-05  9.107e-05   1.078    0.286    
+time_point2:temperature20 -5.198e-05  1.825e-04  -0.285    0.777    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.0003455 on 53 degrees of freedom
+Multiple R-squared:  0.07701,   Adjusted R-squared:  0.007352 
+F-statistic: 1.106 on 4 and 53 DF,  p-value: 0.3637</code></pre>
+</div>
+<div id="raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction" class="section level2 hasAnchor" number="8.3">
+<h2><span class="header-section-number">8.3</span> Raw data modelling (LM) without random effect and using elevation as interaction<a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb122-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb122-1" tabindex="-1"></a><span class="co">#Create linear model formula</span></span>
+<span id="cb122-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb122-2" tabindex="-1"></a>formula5 <span class="ot">&lt;-</span> <span class="fu">formula</span>(o2_normalized <span class="sc">~</span> time_point<span class="sc">*</span>temperature<span class="sc">*</span>elevation) <span class="co">#QC_normalized=o2 consumption normalized (ml/s/g)</span></span>
+<span id="cb122-3"><a href="raw-data-modelling-lmm-without-interaction.html#cb122-3" tabindex="-1"></a></span>
+<span id="cb122-4"><a href="raw-data-modelling-lmm-without-interaction.html#cb122-4" tabindex="-1"></a><span class="co">#Fit the linear model</span></span>
+<span id="cb122-5"><a href="raw-data-modelling-lmm-without-interaction.html#cb122-5" tabindex="-1"></a>model5 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula5, <span class="at">data =</span> calotriton_resp1_subset)</span>
+<span id="cb122-6"><a href="raw-data-modelling-lmm-without-interaction.html#cb122-6" tabindex="-1"></a></span>
+<span id="cb122-7"><a href="raw-data-modelling-lmm-without-interaction.html#cb122-7" tabindex="-1"></a><span class="co">#Print the model summary</span></span>
+<span id="cb122-8"><a href="raw-data-modelling-lmm-without-interaction.html#cb122-8" tabindex="-1"></a><span class="fu">summary</span>(model5)</span></code></pre></div>
+<pre class="script-output"><code>
+Call:
+lm(formula = formula5, data = calotriton_resp1_subset)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-7.267e-04 -2.333e-04  2.061e-05  1.931e-04  9.003e-04 
+
+Coefficients:
+                                         Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                             0.0006666  0.0001388   4.802 1.47e-05 ***
+time_point2                             0.0001416  0.0001892   0.748   0.4577    
+temperature20                           0.0004667  0.0001836   2.541   0.0142 *  
+elevationLow                            0.0003303  0.0001836   1.798   0.0782 .  
+time_point2:temperature20              -0.0003454  0.0002584  -1.337   0.1874    
+time_point2:elevationLow               -0.0001911  0.0002637  -0.725   0.4720    
+temperature20:elevationLow             -0.0005235  0.0002503  -2.092   0.0416 *  
+time_point2:temperature20:elevationLow  0.0005462  0.0003597   1.518   0.1352    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.00034 on 50 degrees of freedom
+Multiple R-squared:  0.1565,    Adjusted R-squared:  0.03843 
+F-statistic: 1.325 on 7 and 50 DF,  p-value: 0.2581</code></pre>
+</div>
+<div id="raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction-with-temperature" class="section level2 hasAnchor" number="8.4">
+<h2><span class="header-section-number">8.4</span> Raw data modelling (LM) without random effect and using elevation as interaction with temperature<a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction-with-temperature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb124-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb124-1" tabindex="-1"></a><span class="co">#Create linear model formula</span></span>
+<span id="cb124-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb124-2" tabindex="-1"></a>formula6 <span class="ot">&lt;-</span> <span class="fu">formula</span>(o2_normalized <span class="sc">~</span> time_point<span class="sc">+</span>temperature<span class="sc">*</span>elevation) <span class="co">#QC_normalized=o2 consumption normalized (ml/s/g)</span></span>
+<span id="cb124-3"><a href="raw-data-modelling-lmm-without-interaction.html#cb124-3" tabindex="-1"></a></span>
+<span id="cb124-4"><a href="raw-data-modelling-lmm-without-interaction.html#cb124-4" tabindex="-1"></a><span class="co">#Fit the linear model</span></span>
+<span id="cb124-5"><a href="raw-data-modelling-lmm-without-interaction.html#cb124-5" tabindex="-1"></a>model6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula6, <span class="at">data =</span> calotriton_resp1_subset)</span>
+<span id="cb124-6"><a href="raw-data-modelling-lmm-without-interaction.html#cb124-6" tabindex="-1"></a></span>
+<span id="cb124-7"><a href="raw-data-modelling-lmm-without-interaction.html#cb124-7" tabindex="-1"></a><span class="co">#Print the model summary</span></span>
+<span id="cb124-8"><a href="raw-data-modelling-lmm-without-interaction.html#cb124-8" tabindex="-1"></a><span class="fu">summary</span>(model6)</span></code></pre></div>
+<pre class="script-output"><code>
+Call:
+lm(formula = formula6, data = calotriton_resp1_subset)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-7.016e-04 -2.517e-04  1.527e-05  2.464e-04  8.668e-04 
+
+Coefficients:
+                             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                 7.379e-04  1.057e-04   6.981 4.84e-09 ***
+time_point2                 9.191e-06  8.943e-05   0.103   0.9185    
+temperature20               2.960e-04  1.287e-04   2.300   0.0254 *  
+elevationLow                2.338e-04  1.310e-04   1.784   0.0801 .  
+temperature20:elevationLow -2.566e-04  1.792e-04  -1.432   0.1580    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.0003393 on 53 degrees of freedom
+Multiple R-squared:   0.11, Adjusted R-squared:  0.04287 
+F-statistic: 1.638 on 4 and 53 DF,  p-value: 0.1783</code></pre>
+</div>
+<div id="raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction-with-time-point" class="section level2 hasAnchor" number="8.5">
+<h2><span class="header-section-number">8.5</span> Raw data modelling (LM) without random effect and using elevation as interaction with time-point<a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction-with-time-point" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb126-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb126-1" tabindex="-1"></a><span class="co">#Create linear model formula</span></span>
+<span id="cb126-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb126-2" tabindex="-1"></a>formula7 <span class="ot">&lt;-</span> <span class="fu">formula</span>(o2_normalized <span class="sc">~</span> time_point<span class="sc">*</span>elevation<span class="sc">+</span>temperature) <span class="co">#QC_normalized=o2 consumption normalized (ml/s/g)</span></span>
+<span id="cb126-3"><a href="raw-data-modelling-lmm-without-interaction.html#cb126-3" tabindex="-1"></a></span>
+<span id="cb126-4"><a href="raw-data-modelling-lmm-without-interaction.html#cb126-4" tabindex="-1"></a><span class="co">#Fit the linear model</span></span>
+<span id="cb126-5"><a href="raw-data-modelling-lmm-without-interaction.html#cb126-5" tabindex="-1"></a>model7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula7, <span class="at">data =</span> calotriton_resp1_subset)</span>
+<span id="cb126-6"><a href="raw-data-modelling-lmm-without-interaction.html#cb126-6" tabindex="-1"></a></span>
+<span id="cb126-7"><a href="raw-data-modelling-lmm-without-interaction.html#cb126-7" tabindex="-1"></a><span class="co">#Print the model summary</span></span>
+<span id="cb126-8"><a href="raw-data-modelling-lmm-without-interaction.html#cb126-8" tabindex="-1"></a><span class="fu">summary</span>(model7)</span></code></pre></div>
+<pre class="script-output"><code>
+Call:
+lm(formula = formula7, data = calotriton_resp1_subset)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-6.774e-04 -2.244e-04  1.679e-05  2.854e-04  9.092e-04 
+
+Coefficients:
+                           Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)               8.421e-04  1.058e-04   7.960  1.3e-10 ***
+time_point2              -5.304e-05  1.304e-04  -0.407   0.6860    
+elevationLow              4.657e-05  1.263e-04   0.369   0.7138    
+temperature20             1.596e-04  9.098e-05   1.755   0.0851 .  
+time_point2:elevationLow  1.029e-04  1.818e-04   0.566   0.5740    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.0003447 on 53 degrees of freedom
+Multiple R-squared:  0.08114,   Adjusted R-squared:  0.0118 
+F-statistic:  1.17 on 4 and 53 DF,  p-value: 0.3345</code></pre>
+</div>
+<div id="raw-data-modelling-lm-without-random-effect-and-population-as-interaction-with-temperature" class="section level2 hasAnchor" number="8.6">
+<h2><span class="header-section-number">8.6</span> Raw data modelling (LM) without random effect and population as interaction with temperature<a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-population-as-interaction-with-temperature" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb128-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb128-1" tabindex="-1"></a><span class="co">#Create linear model formula</span></span>
+<span id="cb128-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb128-2" tabindex="-1"></a>formula8 <span class="ot">&lt;-</span> <span class="fu">formula</span>(o2_normalized <span class="sc">~</span> time_point<span class="sc">+</span>temperature<span class="sc">*</span>population) <span class="co">#QC_normalized=o2 consumption normalized (ml/s/g)</span></span>
+<span id="cb128-3"><a href="raw-data-modelling-lmm-without-interaction.html#cb128-3" tabindex="-1"></a></span>
+<span id="cb128-4"><a href="raw-data-modelling-lmm-without-interaction.html#cb128-4" tabindex="-1"></a><span class="co">#Fit the linear model</span></span>
+<span id="cb128-5"><a href="raw-data-modelling-lmm-without-interaction.html#cb128-5" tabindex="-1"></a>model8 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula8, <span class="at">data =</span> calotriton_resp1_subset)</span>
+<span id="cb128-6"><a href="raw-data-modelling-lmm-without-interaction.html#cb128-6" tabindex="-1"></a></span>
+<span id="cb128-7"><a href="raw-data-modelling-lmm-without-interaction.html#cb128-7" tabindex="-1"></a><span class="co">#Print the model summary</span></span>
+<span id="cb128-8"><a href="raw-data-modelling-lmm-without-interaction.html#cb128-8" tabindex="-1"></a><span class="fu">summary</span>(model8)</span></code></pre></div>
+<pre class="script-output"><code>
+Call:
+lm(formula = formula8, data = calotriton_resp1_subset)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-7.532e-04 -2.594e-04  3.575e-05  2.208e-04  8.154e-04 
+
+Coefficients:
+                                    Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                        8.265e-04  1.385e-04   5.969 2.61e-07 ***
+time_point2                        8.886e-06  8.982e-05   0.099    0.922    
+temperature20                      1.578e-04  1.762e-04   0.896    0.375    
+populationGoizueta                 1.167e-04  1.719e-04   0.679    0.500    
+populationHarpea                  -1.917e-04  1.894e-04  -1.012    0.316    
+populationLeitzaran                1.968e-04  1.998e-04   0.985    0.330    
+temperature20:populationGoizueta  -2.136e-04  2.418e-04  -0.883    0.381    
+temperature20:populationHarpea     2.983e-04  2.585e-04   1.154    0.254    
+temperature20:populationLeitzaran -4.600e-05  2.624e-04  -0.175    0.862    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.0003403 on 49 degrees of freedom
+Multiple R-squared:  0.1724,    Adjusted R-squared:  0.03724 
+F-statistic: 1.276 on 8 and 49 DF,  p-value: 0.2779</code></pre>
+</div>
+<div id="raw-data-modelling-lm-without-random-effect-and-population-as-interaction-with-time-point" class="section level2 hasAnchor" number="8.7">
+<h2><span class="header-section-number">8.7</span> Raw data modelling (LM) without random effect and population as interaction with time-point<a href="raw-data-modelling-lmm-without-interaction.html#raw-data-modelling-lm-without-random-effect-and-population-as-interaction-with-time-point" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r script-source"><code class="sourceCode r"><span id="cb130-1"><a href="raw-data-modelling-lmm-without-interaction.html#cb130-1" tabindex="-1"></a><span class="co">#Create linear model formula</span></span>
+<span id="cb130-2"><a href="raw-data-modelling-lmm-without-interaction.html#cb130-2" tabindex="-1"></a>formula9 <span class="ot">&lt;-</span> <span class="fu">formula</span>(o2_normalized <span class="sc">~</span> time_point<span class="sc">*</span>population<span class="sc">+</span>temperature) <span class="co">#QC_normalized=o2 consumption normalized (ml/s/g)</span></span>
+<span id="cb130-3"><a href="raw-data-modelling-lmm-without-interaction.html#cb130-3" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="raw-data-modelling-lmm-without-interaction.html#cb130-4" tabindex="-1"></a><span class="co">#Fit the linear model</span></span>
+<span id="cb130-5"><a href="raw-data-modelling-lmm-without-interaction.html#cb130-5" tabindex="-1"></a>model9 <span class="ot">&lt;-</span> <span class="fu">lm</span>(formula9, <span class="at">data =</span> calotriton_resp1_subset)</span>
+<span id="cb130-6"><a href="raw-data-modelling-lmm-without-interaction.html#cb130-6" tabindex="-1"></a></span>
+<span id="cb130-7"><a href="raw-data-modelling-lmm-without-interaction.html#cb130-7" tabindex="-1"></a><span class="co">#Print the model summary</span></span>
+<span id="cb130-8"><a href="raw-data-modelling-lmm-without-interaction.html#cb130-8" tabindex="-1"></a><span class="fu">summary</span>(model9)</span></code></pre></div>
+<pre class="script-output"><code>
+Call:
+lm(formula = formula9, data = calotriton_resp1_subset)
+
+Residuals:
+       Min         1Q     Median         3Q        Max 
+-7.436e-04 -2.596e-04  4.344e-05  1.917e-04  8.535e-04 
+
+Coefficients:
+                                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                      9.629e-04  1.404e-04   6.859  1.1e-08 ***
+time_point2                     -2.378e-04  1.785e-04  -1.332    0.189    
+populationGoizueta              -1.619e-04  1.741e-04  -0.930    0.357    
+populationHarpea                -2.292e-04  1.843e-04  -1.244    0.219    
+populationLeitzaran              5.080e-05  1.843e-04   0.276    0.784    
+temperature20                    1.488e-04  9.148e-05   1.626    0.110    
+time_point2:populationGoizueta   3.442e-04  2.450e-04   1.405    0.166    
+time_point2:populationHarpea     3.910e-04  2.619e-04   1.493    0.142    
+time_point2:populationLeitzaran  2.182e-04  2.624e-04   0.832    0.410    
+---
+Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+
+Residual standard error: 0.0003447 on 49 degrees of freedom
+Multiple R-squared:  0.1506,    Adjusted R-squared:  0.01188 
+F-statistic: 1.086 on 8 and 49 DF,  p-value: 0.3889</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="raw-data-modelling-lmm.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "subsection"
+  }
+});
+});
+</script>
+
+</body>
+
+</html>
