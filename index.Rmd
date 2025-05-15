@@ -23,7 +23,8 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-This webbook contains all the code used for data analysis in study of the individual-level metagenomic data of Podarcis muralis and Podarcis liolepis lizards from different environments during an experimental setup.
+This webbook contains all the code used for data analysis in study of the individual-level respirometry tests of Calotriton asper from different elevations and acclimation in distinct temperatures.
+metagenomic data of Podarcis muralis and Podarcis liolepis lizards from different environments during an experimental setup.
 
 ## Prepare the R environment
 
