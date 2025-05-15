@@ -12,12 +12,6 @@ metabolic-scaling-at-each-group-and-time-point
 time-point-oxygen-consumption
 time-point-oxygen-consumption-linking-individuals
 raw-data-modelling-lmm
-raw-data-modelling-lm-without-random-effect
 raw-data-modelling-lmm-without-interaction
-raw-data-modelling-lm-without-random-effect-and-interaction
-raw-data-modelling-lm-without-random-effect-and-using-elevation-and-not-population
-raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction
-raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction-with-temperature
-raw-data-modelling-lm-without-random-effect-and-using-elevation-as-interaction-with-time-point
-raw-data-modelling-lm-without-random-effect-and-population-as-interaction-with-temperature
-raw-data-modelling-lm-without-random-effect-and-population-as-interaction-with-time-point
+raw-data-modelling-lmm-using-elevation
+raw-data-modelling-lmm-using-elevation-as-interaction

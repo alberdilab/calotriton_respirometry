@@ -611,12 +611,15 @@ calotriton_resp1$temperature<-as.factor(calotriton_resp1$temperature)
 
 # Weight distribution among groups
 
-```{r plot_weight}
+```{r plot_weight, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 calotriton_resp1 %>%
   filter(time_point=="0")%>%
-  ggplot(aes(x = population, y = weight, color=temperature, shape=temperature, alpha=0.2)) +
-    geom_boxplot()+
-    geom_jitter()+
+  ggplot(aes(x = population, y = weight, color=temperature, shape=temperature)) +
+   geom_boxplot(outlier.shape = NA, position = position_dodge(width = 0.75)) +
+    geom_jitter(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.75), alpha = 0.8)+
+     scale_color_manual(name="temperature",
+          breaks=c("14","20"),
+          values=c('#4477AA', "#ff0000"))+
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
     stat_compare_means(size=3,vjust = 0.8, hjust=1 )+
     theme(legend.position="right")+
@@ -648,7 +651,7 @@ weight_subset_low$weight %>% sd()
 
 ## Metabolic scaling at the acclimation time-point
 
-```{r plot_weight_1}
+```{r plot_weight_1, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 
 ggplot(weight_subset, aes(weight,o2, color=population, shape=temperature)) + 
   geom_point() +
@@ -658,7 +661,7 @@ ggplot(weight_subset, aes(weight,o2, color=population, shape=temperature)) +
 ```
 
 ### High elevation newts
-```{r cor_weight_1}
+```{r cor_weight_1, warning=FALSE, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 
 ggplot(weight_subset_high, aes(weight ,o2, shape=temperature)) + 
   geom_point() +
@@ -668,7 +671,7 @@ ggplot(weight_subset_high, aes(weight ,o2, shape=temperature)) +
 ```
 
 ### Low elevation newts
-```{r cor_weight_2}
+```{r cor_weight_2, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 ggplot(weight_subset_low, aes(weight ,o2, shape=temperature)) + 
   geom_point() +
   geom_smooth(method = lm, formula = y ~ x)+
@@ -678,10 +681,10 @@ ggplot(weight_subset_low, aes(weight ,o2, shape=temperature)) +
 
 ## Metabolic scaling at each group and time-point
 
-```{r plot_weight_2}
+```{r plot_weight_2, fig.height=10, fig.width=14, fig.fullwidth=TRUE, warning=FALSE}
 ggplot(calotriton_resp1, aes(weight ,o2)) + 
   geom_point() +
-  facet_grid(temperature~ factor(population)+time_point)+
+  facet_grid(temperature~ elevation+factor(population)+time_point)+
   geom_smooth(method = lm, formula = y ~ x)+
     stat_poly_eq()+
     labs(x = "Weight (g)", y= "O2 consumption (ml/s)")
@@ -689,43 +692,50 @@ ggplot(calotriton_resp1, aes(weight ,o2)) +
 
 #Acclimation oxygen consumption per population
 
-```{r plot}
+```{r plot, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 calotriton_resp1 %>%
   filter(time_point=="0")%>%
-  ggplot(aes(x = population, y = o2_normalized, color=temperature, shape=temperature, alpha=0.2)) +
-    geom_boxplot()+
-    geom_jitter() +
-    #geom_text(aes(label = individual), hjust = 0, nudge_x = 0.05) +
+  ggplot(aes(x = population, y = o2_normalized, color=temperature, shape=elevation)) +
+   geom_boxplot(outlier.shape = NA, position = position_dodge(width = 0.75)) +
+    geom_jitter(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.75), alpha = 0.8)+
+     scale_color_manual(name="temperature",
+          breaks=c("14","20"),
+          values=c('#4477AA', "#ff0000"))+
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
     stat_compare_means(size=3,vjust = 0.8, hjust=1 )+
+    
     theme(legend.position="right")+
     labs(x = "Population", y= "Normalized o2 consumption (ml/s/g)")
 ```
 
 #Acclimation oxygen consumption per elevation
 
-```{r plot_1}
+```{r plot_1, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 calotriton_resp1 %>%
-  filter(time_point=="0")%>%
-  ggplot(aes(x = elevation, y = o2_normalized, shape=temperature, alpha=0.2)) +
-    geom_boxplot()+
-    geom_jitter() +
-    #geom_text(aes(label = individual), hjust = 0, nudge_x = 0.05) +
-    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
-    stat_compare_means(size=3,vjust = 0.8, hjust=1 )+
-    theme(legend.position="right")+
-    labs(x = "Population", y= "Normalized o2 consumption (ml/s/g)")
+  filter(time_point == "0") %>%
+  ggplot(aes(x = elevation, y = o2_normalized, colour = temperature)) +
+    geom_boxplot(outlier.shape = NA, position = position_dodge(width = 0.75)) +
+    geom_jitter(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.75), alpha = 0.8) +
+    scale_color_manual(
+      name = "Temperature",
+      breaks = c("14", "20"),
+      values = c('#4477AA', "#ff0000")
+    ) +
+    theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust = 1)) +
+    stat_compare_means(size = 3, vjust = 0.8, hjust = 1) +
+    theme(legend.position = "right") +
+    labs(x = "Population", y = "Normalized o2 consumption (ml/s/g)")
+
 ```
 
 #Acclimation oxygen consumption per temperature
 
-```{r plot_5}
+```{r plot_5, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 calotriton_resp1 %>%
   filter(time_point=="0")%>%
-  ggplot(aes(x = temperature, y = o2_normalized, colour=population, alpha=0.2)) +
-    geom_boxplot()+
-    geom_jitter() +
-    #geom_text(aes(label = individual), hjust = 0, nudge_x = 0.05) +
+  ggplot(aes(x = temperature, y = o2_normalized, colour=population)) +
+  geom_boxplot(outlier.shape = NA, position = position_dodge(width = 0.75)) +
+    geom_jitter(position = position_jitterdodge(jitter.width = 0.2, dodge.width = 0.75), alpha = 0.8)+
     theme(axis.text.x = element_text(angle = 45, vjust = 0.5, hjust=1))+
     stat_compare_means(size=3,vjust = 0.8, hjust=1 )+
     theme(legend.position="right")+
@@ -734,12 +744,22 @@ calotriton_resp1 %>%
 
 # Time-point oxygen consumption
 
-```{r plot_6}
+```{r plot_6, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 calotriton_resp1 %>%
   filter(time_point!="0") %>%
-  ggplot(aes(x = time_point, y = o2_normalized, color=time_point, alpha=0.2)) +
+  ggplot(aes(x = time_point, y = o2_normalized, color=time_point, fill=time_point)) +
     geom_boxplot()+
     geom_jitter() +
+    scale_color_manual(
+      name = "Time point",
+      breaks = c("1", "2"),
+      values = c('#ffa500', "#b37400")
+    ) +
+    scale_fill_manual(
+      name = "Time point",
+      breaks = c("1", "2"),
+      values = c('#ffa50050', "#b3740050")
+    )+
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
     facet_wrap(~ factor(temperature)+elevation)+
     stat_compare_means(size=3)+
@@ -747,12 +767,22 @@ calotriton_resp1 %>%
     labs(x = "Time_point", y= "Normalized o2 consumption (ml/s/g)")
 ```
 
-```{r plot_3}
+```{r plot_3, fig.height=8, fig.width=12, fig.fullwidth=TRUE}
 calotriton_resp1 %>%
   filter(time_point!="0") %>%
-  ggplot(aes(x = time_point, y = o2_normalized, color=time_point, alpha=0.2)) +
+  ggplot(aes(x = time_point, y = o2_normalized, color=time_point, fill=time_point)) +
     geom_boxplot()+
     geom_jitter() +
+    scale_color_manual(
+      name = "Time point",
+      breaks = c("1", "2"),
+      values = c('#ffa500', "#b37400")
+    ) +
+    scale_fill_manual(
+      name = "Time point",
+      breaks = c("1", "2"),
+      values = c('#ffa50050', "#b3740050")
+    )+
     theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))+
     facet_grid(temperature~factor(elevation)+population)+
     stat_compare_means(size=3)+
@@ -795,19 +825,6 @@ MuMIn::r.squaredGLMM(model)
 
 ```
 
-## Raw data modelling (LM) without random effect
-
-```{r model_1}
-#Create linear model formula
-formula1 <- formula(o2_normalized ~ time_point*temperature*population) #QC_normalized=o2 consumption normalized (ml/s/g)
-
-#Fit the linear model
-model1 <- lm(formula1, data = calotriton_resp1_subset)
-
-#Print the model summary
-summary(model1)
-```
-
 # Raw data modelling (LMM) without interaction
 
 ```{r model_2}
@@ -822,94 +839,33 @@ summary(model3)
 MuMIn::r.squaredGLMM(model3)
 ```
 
-## Raw data modelling (LM) without random effect and interaction
 
-```{r model_3}
-#Create linear model formula
-formula2 <- formula(o2_normalized ~ time_point*temperature+population) #QC_normalized=o2 consumption normalized (ml/s/g)
-
-#Fit the linear model
-model2 <- lm(formula2, data = calotriton_resp1_subset)
-
-#Print the model summary
-summary(model2)
-```
-
-## Raw data modelling (LM) without random effect and using elevation and not population
+## Raw data modelling (LMM) using elevation
 
 ```{r model_4}
 #Create linear model formula
-formula4 <- formula(o2_normalized ~ time_point*temperature+elevation) #QC_normalized=o2 consumption normalized (ml/s/g)
+formula4 <- formula(o2_normalized ~ time_point*temperature+elevation+(1|individual)) #QC_normalized=o2 consumption normalized (ml/s/g)
 
 #Fit the linear model
-model4 <- lm(formula4, data = calotriton_resp1_subset)
+model4 <- lmer(formula4, data = calotriton_resp1_subset)
 
 #Print the model summary
 summary(model4)
+MuMIn::r.squaredGLMM(model4)
 ```
 
 
-## Raw data modelling (LM) without random effect and using elevation as interaction
+## Raw data modelling (LMM) using elevation as interaction
 
 ```{r model_5}
 #Create linear model formula
-formula5 <- formula(o2_normalized ~ time_point*temperature*elevation) #QC_normalized=o2 consumption normalized (ml/s/g)
+formula5 <- formula(o2_normalized ~ time_point*temperature*elevation+(1|individual)) #QC_normalized=o2 consumption normalized (ml/s/g)
 
 #Fit the linear model
-model5 <- lm(formula5, data = calotriton_resp1_subset)
+model5 <- lmer(formula5, data = calotriton_resp1_subset)
 
 #Print the model summary
 summary(model5)
+MuMIn::r.squaredGLMM(model5)
 ```
 
-## Raw data modelling (LM) without random effect and using elevation as interaction with temperature
-
-```{r model_6}
-#Create linear model formula
-formula6 <- formula(o2_normalized ~ time_point+temperature*elevation) #QC_normalized=o2 consumption normalized (ml/s/g)
-
-#Fit the linear model
-model6 <- lm(formula6, data = calotriton_resp1_subset)
-
-#Print the model summary
-summary(model6)
-```
-
-## Raw data modelling (LM) without random effect and using elevation as interaction with time-point
-
-```{r model_7}
-#Create linear model formula
-formula7 <- formula(o2_normalized ~ time_point*elevation+temperature) #QC_normalized=o2 consumption normalized (ml/s/g)
-
-#Fit the linear model
-model7 <- lm(formula7, data = calotriton_resp1_subset)
-
-#Print the model summary
-summary(model7)
-```
-
-## Raw data modelling (LM) without random effect and population as interaction with temperature
-
-```{r model_8}
-#Create linear model formula
-formula8 <- formula(o2_normalized ~ time_point+temperature*population) #QC_normalized=o2 consumption normalized (ml/s/g)
-
-#Fit the linear model
-model8 <- lm(formula8, data = calotriton_resp1_subset)
-
-#Print the model summary
-summary(model8)
-```
-
-## Raw data modelling (LM) without random effect and population as interaction with time-point
-
-```{r model_9}
-#Create linear model formula
-formula9 <- formula(o2_normalized ~ time_point*population+temperature) #QC_normalized=o2 consumption normalized (ml/s/g)
-
-#Fit the linear model
-model9 <- lm(formula9, data = calotriton_resp1_subset)
-
-#Print the model summary
-summary(model9)
-```
