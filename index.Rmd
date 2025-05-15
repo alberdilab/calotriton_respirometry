@@ -1,5 +1,4 @@
 ---
----
 title: "AlberdiLab | "
 subtitle: "Study title to be added"
 author:
